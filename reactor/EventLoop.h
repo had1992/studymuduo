@@ -5,10 +5,15 @@
 #ifndef MUDUO_EVENTLOOP_H
 #define MUDUO_EVENTLOOP_H
 
+#include <memory>
 #include <zconf.h>
+#include <vector>
 #include "../uncopyable.h"
 
-//using namespace std;
+using namespace std;
+
+class Poller;
+class Channel;
 
 class EventLoop : public uncopyable{
 public:
@@ -24,10 +29,15 @@ public:
     EventLoop* getEventLoopOfCurrentThread();
 
 private:
+    typedef vector<Channel*> ChannelList;
+
     void abortNotInLoopThread();
 
     bool looping_;//判断当前是否正在运行loop（）
+    bool quit_;
     const pid_t threadId_;
+    shared_ptr<Poller> poller_;
+    ChannelList activeChannels_;
 };
 
 

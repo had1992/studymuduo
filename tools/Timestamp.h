@@ -20,4 +20,6 @@ private:
     static struct timeval tm;
 };
 
+timeval Timestamp::tm;
+
 #endif //MUDUO_TIMESTAMP_H
