@@ -15,6 +15,8 @@ using namespace std;
 struct pollfd;
 class Channel;
 
+
+//IO多路复用
 class Poller : uncopyable{
 public:
     typedef vector<Channel*> ChannelList;
@@ -29,6 +31,8 @@ public:
     ///Changes the interested I/O events.
     ///Must be calles in the loop thread
     void updateChannel(Channel* channel);
+
+    void removeChannel(Channel* channel);
 
     void assertInLoopThread(){ownerLoop_->assertInLoopThread();}
 

@@ -15,6 +15,11 @@ Channel::Channel(EventLoop *loop, int fd)
 
 }
 
+Channel::~Channel(){
+    loop_->removeChannel(this);
+}
+
+
 void Channel::handleEvent() {
     if (revents_ & POLLNVAL) {
         //todo LOG_WARN
@@ -31,5 +36,5 @@ void Channel::handleEvent() {
 }
 
 void Channel::update() {
-    //todo loop_->updateChannel(this);
+    loop_->updateChannel(this);
 }

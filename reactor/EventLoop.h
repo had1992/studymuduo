@@ -22,6 +22,12 @@ public:
 
     void loop();//运行事件循环
 
+    inline void quit(){quit_ = true;}
+
+    void updateChannel(Channel * channel);//添加新通道或者更新通道信息
+
+    void removeChannel(Channel * channel);
+
     void assertInLoopThread();//判断该对象是否是在本线程创建
 
     inline bool isInLoopThread() const;

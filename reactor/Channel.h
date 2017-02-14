@@ -17,6 +17,7 @@ class Channel :uncopyable{
 public:
     typedef function<void()> EventCallback;
     Channel(EventLoop* loop, int fd);//每个对象管一个fd
+    ~Channel();
 
     void handleEvent();//由EventLoop.loop()调用
 

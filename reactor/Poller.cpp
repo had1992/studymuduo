@@ -61,6 +61,11 @@ void Poller::updateChannel(Channel *channel) {
     }
 }
 
+void Poller::removeChannel(Channel *channel) {
+    assertInLoopThread();//检测EventLoop是否时在本线程中运行
+    channels_.erase(channel->fd());
+}
+
 void Poller::fillActiveChannels(int numEvents, Poller::ChannelList *activeChannels) const {
     PollFdList::const_iterator pfd = pollfds_.begin();
     for(;pfd!=pollfds_.end() && numEvents>0 ;pfd++ ){//遍历找出活动fd
