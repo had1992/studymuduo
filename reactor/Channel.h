@@ -50,7 +50,7 @@ private:
     const int fd_;
     int events_;//关心的事件
     int revents_;//目前活动事件
-    int index_;//used by Poller
+    int index_;//used by Poller,初始值为-1
 
     EventCallback readCallback_;
     EventCallback writeCallback_;
