@@ -1,14 +1,11 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.5)
 project(muduo)
-
-LINK_DIRECTORIES(./)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES muduo.cpp)
+set(MUDUO_SOURCE_FILES muduo.cpp)
 
-set(reactor_files ./reactor/EventLoop.cpp)
+aux_source_directory(reactor REACTOR_SOURCE_FILES)
+message("reactor dir: ${REACTOR_SOURCE_FILES}")
 
-add_library(muduo ${SOURCE_FILES} ${reactor_files})
-
-#target_link_libraries(muduo -lc -lpthread)
+add_library(muduo ${MUDUO_SOURCE_FILES} ${REACTOR_SOURCE_FILES})

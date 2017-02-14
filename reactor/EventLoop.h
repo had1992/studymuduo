@@ -12,12 +12,12 @@
 
 class EventLoop : public uncopyable{
 public:
-    EventLoop();
+    EventLoop();//如果本线程已经存在一个对象，则输出错误日志
     ~EventLoop();
 
-    void loop();
+    void loop();//运行事件循环
 
-    void assertInLoopThread();
+    void assertInLoopThread();//判断该对象是否是在本线程创建
 
     inline bool isInLoopThread() const;
 
@@ -26,7 +26,7 @@ public:
 private:
     void abortNotInLoopThread();
 
-    bool looping_;
+    bool looping_;//判断当前是否正在运行loop（）
     const pid_t threadId_;
 };
 
