@@ -14,7 +14,7 @@ __thread EventLoop* t_loopInThisThread = 0;
 
 EventLoop::EventLoop():
         looping_(false),
-        threadId_((pid_t)syscall(syscall(__NR_gettid))),
+        threadId_((pid_t)syscall(__NR_gettid)),
         quit_(false),
         poller_(new Poller(this))
 {
@@ -37,7 +37,6 @@ EventLoop *EventLoop::getEventLoopOfCurrentThread() {
 
 void EventLoop::loop() {
 
-
     assert(!looping_);
     assertInLoopThread();
     looping_ = true;
@@ -45,7 +44,7 @@ void EventLoop::loop() {
 
     while(!quit_){
         activeChannels_.clear();
-        int kPollTimeMs = 1;
+        int kPollTimeMs = -1;
         poller_->poll(kPollTimeMs,&activeChannels_);//获得活动fd对应的通道列表
         for_each(activeChannels_.begin(),activeChannels_.end(),[](Channel* channel){
             channel->handleEvent();

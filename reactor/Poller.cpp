@@ -3,7 +3,6 @@
 //
 
 #include <poll.h>
-#include <time.h>
 #include <assert.h>
 #include "Channel.h"
 #include "Poller.h"

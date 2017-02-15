@@ -9,3 +9,5 @@ aux_source_directory(reactor REACTOR_SOURCE_FILES)
 message("reactor dir: ${REACTOR_SOURCE_FILES}")
 
 add_library(muduo ${MUDUO_SOURCE_FILES} ${REACTOR_SOURCE_FILES})
+
+add_subdirectory(test)
