@@ -9,26 +9,32 @@
 #include <set>
 #include <vector>
 #include "../uncopyable.h"
+#include "Channel.h"
 #include "../tools/Timestamp.h"
+#include "TimerId.h"
 
 using namespace std;
 
 class EventLoop;
-class TimerId;
 class Timer;
-class Channel;
+//class Channel;
+//class Timestamp;
 
 class TimerQueue : uncopyable{
 public:
     TimerQueue(EventLoop* loop);
-    ~TimerQueue(){}
+    ~TimerQueue();
+    typedef function<void()> TimerCallback;
+    typedef pair<Timestamp, Timer*> Entry;
+
 
     TimerId addTimer(const TimerCallback& cb, Timestamp when, double interval);
 
+    void cancel(TimerId timerId);
+
 private:
     //FIXME: use unique_ptr<Timer> instead of raw pointers.
-    typedef function<void()> TimerCallback;
-    typedef pair<Timestamp, Timer*> Entry;
+
     typedef set<Entry> TimerList;
 
     void handleRead();
