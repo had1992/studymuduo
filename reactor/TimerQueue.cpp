@@ -17,7 +17,7 @@ TimerQueue::~TimerQueue() {
 }
 
 TimerId TimerQueue::addTimer(const TimerCallback &cb, Timestamp when, double interval) {
-    timerfdChannel_.setRaedCallback(cb);
+    timerfdChannel_.setReadCallback(cb);
 }
 
 void TimerQueue::cancel(TimerId timerId) {

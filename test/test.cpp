@@ -14,7 +14,7 @@ int main(){
     Channel channel(&eventloop,1);
     channel.enableReading();
     channel.disableWriting();
-    channel.setRaedCallback([](){
+    channel.setReadCallback([](){
         cout << "read something" << endl;
         char * x = new char[50];
         int getcnums = read(1,x,50);

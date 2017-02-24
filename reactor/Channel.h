@@ -21,7 +21,7 @@ public:
 
     void handleEvent();//由EventLoop.loop()调用
 
-    inline void setRaedCallback(const EventCallback& cb){readCallback_ = cb;};//设置回调函数
+    inline void setReadCallback(const EventCallback& cb){readCallback_ = cb;};//设置回调函数
     inline void setWriteCallback(const EventCallback& cb){writeCallback_ = cb;};
     inline void setErrorCallback(const EventCallback& cb){errorCallback_ = cb;};
 
